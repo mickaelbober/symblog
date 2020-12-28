@@ -1,0 +1,181 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} : {{ article.title }} {% endblock %}
+
+{% block body %}
+
+<div class="container view my-3">
+    <h2 class="my-0">{{ article.title }}</h2>
+    <div class="metadata">
+        <i class="fas fa-calendar-alt"></i> {{ article.createdAt | date('d/m/Y à H:i') }}
+        <i class="fas fa-cog"></i> {{ article.category.title }}
+        <i class="fas fa-user-circle"></i> achretien
+    </div>
+    <hr/>
+    <img src="{{ article.image }}" class="img-fluid mb-3" alt="">
+    <div class="content">
+        {{ article.content | raw }}
+    </div>
+</div>
+<div class="container comments my-3">
+    <h4>8 commentaires ...</h4>
+    <div class="bg-light rounded m-3 p-3">
+        <div class="row">
+            <div class="col-avatar">
+                <img src="http://lorempixel.com/80/80/city/" class="img-fluid rounded mt-1" alt="">
+            </div>
+            <div class="col-md">
+                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci, atque beatae distinctio
+                exercitationem expedita fugit harum, incidunt ipsum libero odit quis rerum sapiente voluptates?
+            </div>
+        </div>
+    </div>
+    <div class="bg-light rounded m-3 p-3">
+        <div class="row">
+            <div class="col-avatar">
+                <img src="http://lorempixel.com/80/80/animals/" class="img-fluid rounded mt-1" alt="">
+            </div>
+            <div class="col-md">
+                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam asperiores assumenda consequatur
+                corporis cupiditate deleniti est fugiat incidunt labore natus, neque pariatur repellat sapiente tempora
+                veniam voluptas. Aspernatur deserunt dolore et ipsa iure maxime obcaecati odit officiis sed tempore.
+            </div>
+        </div>
+    </div>
+    <div class="bg-light rounded m-3 p-3">
+        <div class="row">
+            <div class="col-avatar">
+                <img src="http://lorempixel.com/80/80/sports/" class="img-fluid rounded mt-1" alt="">
+            </div>
+            <div class="col-md">
+                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, molestiae molestias neque
+                repudiandae sunt tempore!
+            </div>
+        </div>
+    </div>
+    <div class="bg-light rounded m-3 p-3">
+        <div class="row">
+            <div class="col-avatar">
+                <img src="http://lorempixel.com/80/80/fashion/" class="img-fluid rounded mt-1" alt="">
+            </div>
+            <div class="col-md">
+                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dicta dolorem ducimus eligendi eos
+                facere ipsum iure laudantium maxime minima nam neque optio possimus, quo quod sed sit soluta sunt
+                tempore ullam veniam voluptas voluptate.
+            </div>
+        </div>
+    </div>
+    <div class="bg-light rounded m-3 p-3">
+        <div class="row">
+            <div class="col-avatar">
+                <img src="http://lorempixel.com/80/80/cats/" class="img-fluid rounded mt-1" alt="">
+            </div>
+            <div class="col-md">
+                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium beatae consequuntur cum deleniti
+                dignissimos dolore ea eaque eius excepturi expedita facilis hic in ipsam itaque minus nam nemo neque
+                nulla numquam obcaecati odio officia, porro sequi vel velit! Esse, maiores!
+            </div>
+        </div>
+    </div>
+    <div class="bg-light rounded m-3 p-3">
+        <div class="row">
+            <div class="col-avatar">
+                <img src="http://lorempixel.com/80/80/transport/" class="img-fluid rounded mt-1" alt="">
+            </div>
+            <div class="col-md">
+                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, libero.
+            </div>
+        </div>
+    </div>
+    <div class="bg-light rounded m-3 p-3">
+        <div class="row">
+            <div class="col-avatar">
+                <img src="http://lorempixel.com/80/80/nature/" class="img-fluid rounded mt-1" alt="">
+            </div>
+            <div class="col-md">
+                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus atque beatae culpa cupiditate
+                delectus doloribus dolorum eaque et ex excepturi hic incidunt inventore itaque, minima numquam odit
+                optio quaerat qui quisquam reprehenderit saepe sequi soluta tenetur ut velit vero voluptatem.
+            </div>
+        </div>
+    </div>
+    <div class="bg-light rounded m-3 p-3">
+        <div class="row">
+            <div class="col-avatar">
+                <img src="http://lorempixel.com/80/80/people/" class="img-fluid rounded mt-1" alt="">
+            </div>
+            <div class="col-md">
+                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae debitis dolorum esse laborum ut!
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="articleModalLabel">Editer l'article</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times-circle" style="color:#e74c3c"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="title">Titre</label>
+                    <input type="text" value="Titre de l'article" class="form-control" id="title" placeholder="Titre de l'article" required autofocus/>
+                    <span id="titreHelp" class="help-block">Veuillez saisir un titre.</span>
+                </div>
+                <div class="form-group">
+                    <label for="category" class="font-weight-bold">Catégorie</label>
+                    <select class="custom-select" id="category" required>
+                        <option value="">Lorem ipsum dolor sit amet.</option>
+                        <option value="1">Lorem ipsum dolor sit amet.</option>
+                        <option value="2">Lorem ipsum dolor sit amet.</option>
+                        <option value="3">Lorem ipsum dolor sit amet.</option>
+                    </select>
+                    <span id="categoryHelp" class="help-block">Veuillez sélectionner une catégorie.</span>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="text" value="http://lorempixel.com/1280/800/animals/" class="form-control" id="image" placeholder="URL de l'image" required/>
+                    <span id="imageHelp" class="help-block">Veuillez saisir l'url d'une image.</span>
+                </div>
+                <div class="form-group">
+                    <label for="content">Contenu</label>
+                    <textarea class="form-control" placeholder="Contenu de l'article" id="content" rows="5">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus fugit harum in itaque molestiae odio perspiciatis qui repellendus veniam voluptate. Ab amet asperiores aspernatur atque consequatur corporis cum dolor, eveniet ex explicabo facilis fuga id laboriosam placeat porro quia, quis, quisquam recusandae rerum saepe sint tempore velit veritatis? Amet aperiam
+beatae dicta dignissimos distinctio dolores eius ex harum incidunt ipsum iure libero minima
+molestias natus nihil odio optio perferendis possimus quaerat quas, quisquam quo reiciendis sequi, similique sint velit voluptatum?
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque rem voluptatum! Aliquid animi aspernatur aut, autem dolorum eaque ex facere, fugiat in ipsa magni modi molestias nihil omnis, praesentium tempora voluptas? Aliquam fugiat nam quam quibusdam. A amet consequatur, corporis dolor doloremque dolores et, ex impedit laboriosam magni obcaecati officia quidem, quo sed temporibus! Aliquam aut, blanditiis deserunt dolore ducimus et eum ex impedit in inventore ipsum iste magnam magni maiores maxime minima minus neque non omnis perferendis placeat quae quaerat, qui quibusdam quos repudiandae rerum sint sunt unde voluptatem. Ad alias aperiam
+assumenda beatae, consequuntur corporis cum dignissimos dolorem earum eveniet explicabo fuga fugiat hic id ipsam itaque necessitatibus nesciunt nulla officia omnis quidem ratione reiciendis reprehenderit vitae?
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque labore neque possimus quis unde? Ab itaque nisi obcaecati pariatur! Ad aspernatur corporis, delectus distinctio dolorem esse est et eveniet facilis id ipsum, iure laboriosam, nihil nulla obcaecati odio perferendis repellat sunt totam voluptatibus. Adipisci consectetur delectus magni nostrum sint. A aperiam autem delectus dolorum error explicabo ipsa iste iure molestiae nam nesciunt, nihil, perferendis perspiciatis possimus reiciendis repellendus rerum sequi unde. Consectetur doloribus, ducimus ex
+exercitationem fuga minima nihil nobis odio, quia recusandae similique ut vero! Architecto
+blanditiis, consequatur, deserunt doloremque, eaque molestiae natus nihil pariatur porro
+possimus quaerat quod.
+                    </textarea>
+                    <span id="contentHelp" class="help-block">Veuillez saisir un contenu.</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary px-3 py-2 mr-2">
+                    <i class="fas fa-save"></i> Enregistrer
+                </button>
+                <button type="button" class="btn btn-secondary px-3 py-2" data-dismiss="modal">
+                    <i class="fa fa-ban"></i> Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
