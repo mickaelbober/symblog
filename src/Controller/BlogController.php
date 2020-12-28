@@ -13,9 +13,14 @@ class BlogController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/BlogController.php',
-        ]);
+        return $this->render('blog/index.html.twig');
+    }
+
+    /**
+     * @Route("/blog/{id}", name="blog_view")
+     */
+    public function view($id): Response
+    {
+        return $this->render('blog/view.html.twig');
     }
 }
