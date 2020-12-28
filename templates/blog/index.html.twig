@@ -5,192 +5,30 @@
 {% block body %}
 
 <div class="container-fluid blog my-3">
+    {% for article in articles %}
+        {% if loop.index0 is divisible by (3) %}
     <div class="row">
+        {% endif %}
         <div class="col-md">
-            <h4 class="my-0">Titre de l'article</h4>
+            <h4 class="my-0">{{ article.title }}</h4>
             <div class="metadata">
-                <i class="fas fa-calendar-alt"></i> 10/05/2018 à 19:00
-                <i class="fas fa-cog"></i> Politique
+                <i class="fas fa-calendar-alt"></i> {{ article.createdAt | date('d/m/Y à H:i') }}
+                <i class="fas fa-cog"></i> {{ article.category.title }}
                 <i class="fas fa-user-circle"></i> achretien
             </div>
             <hr/>
-            <img src="http://lorempixel.com/800/450/abstract/" class="img-fluid" alt="">
+            <img src="{{ article.image }}" class="img-fluid" alt="">
             <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto consectetur
-                    corporis deserunt ea eligendi expedita incidunt inventore laudantium magni molestias natus
-                    perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat harum impedit necessitatibus
-                    nemo quaerat rerum soluta? At, sequi, veniam. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Accusamus architecto consectetur corporis deserunt ea eligendi expedita incidunt inventore
-                    laudantium magni molestias natus perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat
-                    harum impedit necessitatibus nemo quaerat rerum soluta? At, sequi, veniam.</p>
+                {{ article.content | raw }}
             </div>
-            <a href="view.html" class="btn btn-primary btn-sm mb-3"><i class="fas fa-eye"></i> Lire la suite</a>
+            <a href="{{ path('blog_view', { 'id': article.id }) }}" class="btn btn-primary btn-sm mb-3">
+                <i class="fas fa-eye"></i> Lire la suite
+            </a>
         </div>
-        <div class="col-md">
-            <h4 class="my-0">Titre de l'article</h4>
-            <div class="metadata">
-                <i class="fas fa-calendar-alt"></i> 10/05/2018 à 19:00
-                <i class="fas fa-cog"></i> Politique
-                <i class="fas fa-user-circle"></i> achretien
-            </div>
-            <hr/>
-            <img src="http://lorempixel.com/800/450/city/" class="img-fluid" alt="">
-            <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto consectetur
-                    corporis deserunt ea eligendi expedita incidunt inventore laudantium magni molestias natus
-                    perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat harum impedit necessitatibus
-                    nemo quaerat rerum soluta? At, sequi, veniam. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Accusamus architecto consectetur corporis deserunt ea eligendi expedita incidunt inventore
-                    laudantium magni molestias natus perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat
-                    harum impedit necessitatibus nemo quaerat rerum soluta? At, sequi, veniam.</p>
-            </div>
-            <a href="view.html" class="btn btn-primary btn-sm mb-3"><i class="fas fa-eye"></i> Lire la suite</a>
-        </div>
-        <div class="col-md">
-            <h4 class="my-0">Titre de l'article</h4>
-            <div class="metadata">
-                <i class="fas fa-calendar-alt"></i> 10/05/2018 à 19:00
-                <i class="fas fa-cog"></i> Politique
-                <i class="fas fa-user-circle"></i> achretien
-            </div>
-            <hr/>
-            <img src="http://lorempixel.com/800/450/people/" class="img-fluid" alt="">
-            <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto consectetur
-                    corporis deserunt ea eligendi expedita incidunt inventore laudantium magni molestias natus
-                    perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat harum impedit necessitatibus
-                    nemo quaerat rerum soluta? At, sequi, veniam. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Accusamus architecto consectetur corporis deserunt ea eligendi expedita incidunt inventore
-                    laudantium magni molestias natus perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat
-                    harum impedit necessitatibus nemo quaerat rerum soluta? At, sequi, veniam.</p>
-            </div>
-            <a href="view.html" class="btn btn-primary btn-sm mb-3"><i class="fas fa-eye"></i> Lire la suite</a>
-        </div>
+        {% if loop.index is divisible by (3) or loop.last %}
     </div>
-    <div class="row">
-        <div class="col-md">
-            <h4 class="my-0">Titre de l'article</h4>
-            <div class="metadata">
-                <i class="fas fa-calendar-alt"></i> 10/05/2018 à 19:00
-                <i class="fas fa-cog"></i> Politique
-                <i class="fas fa-user-circle"></i> achretien
-            </div>
-            <hr/>
-            <img src="http://lorempixel.com/800/450/transport/" class="img-fluid" alt="">
-            <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto consectetur
-                    corporis deserunt ea eligendi expedita incidunt inventore laudantium magni molestias natus
-                    perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat harum impedit necessitatibus
-                    nemo quaerat rerum soluta? At, sequi, veniam. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Accusamus architecto consectetur corporis deserunt ea eligendi expedita incidunt inventore
-                    laudantium magni molestias natus perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat
-                    harum impedit necessitatibus nemo quaerat rerum soluta? At, sequi, veniam.</p>
-            </div>
-            <a href="view.html" class="btn btn-primary btn-sm mb-3"><i class="fas fa-eye"></i> Lire la suite</a>
-        </div>
-        <div class="col-md">
-            <h4 class="my-0">Titre de l'article</h4>
-            <div class="metadata">
-                <i class="fas fa-calendar-alt"></i> 10/05/2018 à 19:00
-                <i class="fas fa-cog"></i> Politique
-                <i class="fas fa-user-circle"></i> achretien
-            </div>
-            <hr/>
-            <img src="http://lorempixel.com/800/450/animals/" class="img-fluid" alt="">
-            <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto consectetur
-                    corporis deserunt ea eligendi expedita incidunt inventore laudantium magni molestias natus
-                    perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat harum impedit necessitatibus
-                    nemo quaerat rerum soluta? At, sequi, veniam. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Accusamus architecto consectetur corporis deserunt ea eligendi expedita incidunt inventore
-                    laudantium magni molestias natus perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat
-                    harum impedit necessitatibus nemo quaerat rerum soluta? At, sequi, veniam.</p>
-            </div>
-            <a href="view.html" class="btn btn-primary btn-sm mb-3"><i class="fas fa-eye"></i> Lire la suite</a>
-        </div>
-        <div class="col-md">
-            <h4 class="my-0">Titre de l'article</h4>
-            <div class="metadata">
-                <i class="fas fa-calendar-alt"></i> 10/05/2018 à 19:00
-                <i class="fas fa-cog"></i> Politique
-                <i class="fas fa-user-circle"></i> achretien
-            </div>
-            <hr/>
-            <img src="http://lorempixel.com/800/450/food/" class="img-fluid" alt="">
-            <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto consectetur
-                    corporis deserunt ea eligendi expedita incidunt inventore laudantium magni molestias natus
-                    perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat harum impedit necessitatibus
-                    nemo quaerat rerum soluta? At, sequi, veniam. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Accusamus architecto consectetur corporis deserunt ea eligendi expedita incidunt inventore
-                    laudantium magni molestias natus perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat
-                    harum impedit necessitatibus nemo quaerat rerum soluta? At, sequi, veniam.</p>
-            </div>
-            <a href="view.html" class="btn btn-primary btn-sm mb-3"><i class="fas fa-eye"></i> Lire la suite</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md">
-            <h4 class="my-0">Titre de l'article</h4>
-            <div class="metadata">
-                <i class="fas fa-calendar-alt"></i> 10/05/2018 à 19:00
-                <i class="fas fa-cog"></i> Politique
-                <i class="fas fa-user-circle"></i> achretien
-            </div>
-            <hr/>
-            <img src="http://lorempixel.com/800/450/nature/" class="img-fluid" alt="">
-            <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto consectetur
-                    corporis deserunt ea eligendi expedita incidunt inventore laudantium magni molestias natus
-                    perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat harum impedit necessitatibus
-                    nemo quaerat rerum soluta? At, sequi, veniam. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Accusamus architecto consectetur corporis deserunt ea eligendi expedita incidunt inventore
-                    laudantium magni molestias natus perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat
-                    harum impedit necessitatibus nemo quaerat rerum soluta? At, sequi, veniam.</p>
-            </div>
-            <a href="view.html" class="btn btn-primary btn-sm mb-3"><i class="fas fa-eye"></i> Lire la suite</a>
-        </div>
-        <div class="col-md">
-            <h4 class="my-0">Titre de l'article</h4>
-            <div class="metadata">
-                <i class="fas fa-calendar-alt"></i> 10/05/2018 à 19:00
-                <i class="fas fa-cog"></i> Politique
-                <i class="fas fa-user-circle"></i> achretien
-            </div>
-            <hr/>
-            <img src="http://lorempixel.com/800/450/business/" class="img-fluid" alt="">
-            <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto consectetur
-                    corporis deserunt ea eligendi expedita incidunt inventore laudantium magni molestias natus
-                    perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat harum impedit necessitatibus
-                    nemo quaerat rerum soluta? At, sequi, veniam. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Accusamus architecto consectetur corporis deserunt ea eligendi expedita incidunt inventore
-                    laudantium magni molestias natus perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat
-                    harum impedit necessitatibus nemo quaerat rerum soluta? At, sequi, veniam.</p>
-            </div>
-            <a href="view.html" class="btn btn-primary btn-sm mb-3"><i class="fas fa-eye"></i> Lire la suite</a>
-        </div>
-        <div class="col-md">
-            <h4 class="my-0">Titre de l'article</h4>
-            <div class="metadata">
-                <i class="fas fa-calendar-alt"></i> 10/05/2018 à 19:00
-                <i class="fas fa-cog"></i> Politique
-                <i class="fas fa-user-circle"></i> achretien
-            </div>
-            <hr/>
-            <img src="http://lorempixel.com/800/450/sports/" class="img-fluid" alt="">
-            <div class="content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus architecto consectetur
-                    corporis deserunt ea eligendi expedita incidunt inventore laudantium magni molestias natus
-                    perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat harum impedit necessitatibus
-                    nemo quaerat rerum soluta? At, sequi, veniam. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Accusamus architecto consectetur corporis deserunt ea eligendi expedita incidunt inventore
-                    laudantium magni molestias natus perferendis placeat quisquam ut vel, veritatis? Cupiditate fugiat
-                    harum impedit necessitatibus nemo quaerat rerum soluta? At, sequi, veniam.</p>
-            </div>
-            <a href="view.html" class="btn btn-primary btn-sm mb-3"><i class="fas fa-eye"></i> Lire la suite</a>
-        </div>
-    </div>
+        {% endif %}
+    {% endfor %}
     <ul class="pagination justify-content-center">
         <li class="disabled page-item">
             <a class="page-link">&laquo;&nbsp;Précédent</a>

@@ -1,42 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ parent() }} : Titre de l'article {% endblock %}
+{% block title %} {{ parent() }} : {{ article.title }} {% endblock %}
 
 {% block body %}
 
 <div class="container view my-3">
-    <h2 class="my-0">Titre de l'article</h2>
+    <h2 class="my-0">{{ article.title }}</h2>
     <div class="metadata">
-        <i class="fas fa-calendar-alt"></i> 10/05/2018 à 19:00
-        <i class="fas fa-cog"></i> catégorie Politique
+        <i class="fas fa-calendar-alt"></i> {{ article.createdAt | date('d/m/Y à H:i') }}
+        <i class="fas fa-cog"></i> {{ article.category.title }}
         <i class="fas fa-user-circle"></i> achretien
     </div>
     <hr/>
-    <img src="http://lorempixel.com/1280/800/animals/" class="img-fluid mb-3" alt="">
+    <img src="{{ article.image }}" class="img-fluid mb-3" alt="">
     <div class="content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus omnis quae quisquam quos!
-            Corporis quisquam repellendus tempora? Accusantium debitis, dolore dolores impedit iste iusto maxime,
-            mollitia nam nulla officiis quae, repellendus reprehenderit soluta. Aperiam assumenda dolorem doloremque
-            error illo nisi pariatur quas quis, rem sed totam voluptas! Ab accusantium adipisci animi, assumenda
-            blanditiis consectetur debitis doloremque dolores ducimus esse ex exercitationem ipsam maxime, numquam
-            quas qui reprehenderit voluptates? Consectetur dignissimos et modi nulla numquam optio quae quas quasi
-            quisquam ratione.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, assumenda, at commodi consectetur,
-            cumque delectus dolorem doloribus eligendi eum fuga fugiat harum illum ipsa itaque iure iusto labore
-            nisi nobis possimus quaerat quam quas qui quisquam repudiandae rerum sed sequi ut vel voluptate
-            voluptatibus. Accusantium, ad autem dolores eaque facere facilis illum in ipsa ipsum nobis, placeat
-            provident sequi suscipit totam ullam. Ad, dicta doloribus eligendi excepturi facere fuga hic in iusto
-            minima molestiae neque nesciunt non odio perferendis quidem recusandae reiciendis rerum, soluta sunt
-            voluptate. Aspernatur cum dolore excepturi exercitationem, ipsum iste nam odit suscipit? Beatae, dicta
-            ducimus expedita maxime non nostrum praesentium qui reiciendis, repellat sapiente sit, ut voluptas! Ad
-            beatae culpa eum ipsam quam quis rerum sequi?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum officiis omnis optio perferendis quae
-            quis tempore? Doloribus esse expedita facere incidunt quaerat rerum, sapiente. Accusantium aliquid
-            aperiam architecto asperiores aspernatur beatae consequatur consequuntur corporis delectus, deleniti
-            dolor dolorum ducimus eaque eligendi est eveniet ipsa iure laborum magnam maiores neque nisi non
-            obcaecati odit pariatur perferendis possimus quae quibusdam quidem reiciendis rem rerum sapiente sed sit
-            suscipit tempore voluptatem. Ad architecto, eaque eligendi illum itaque maiores pariatur praesentium qui
-            vel voluptates.</p>
+        {{ article.content | raw }}
     </div>
 </div>
 <div class="container comments my-3">
