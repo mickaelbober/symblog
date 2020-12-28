@@ -1,0 +1,221 @@
+/* BLOG CSS
+------------------------------------------------- */
+
+.blog h4 {
+    color: #555555;
+    font-size: 18px;
+    font-weight: bold;
+    max-height: 25px;
+    overflow: hidden;
+}
+
+.blog .metadata {
+    color: #7b8a8b;
+    font-size: 14px;
+    font-weight: bold;
+    max-height: 25px;
+    overflow: hidden;
+}
+
+.blog .metadata i.fa-calendar-alt {
+    color: #3498db;
+}
+
+.blog .metadata i.fa-cog {
+    color: #f39c12;
+}
+
+.blog .metadata i.fa-user-circle {
+    color: #e74c3c;
+}
+
+.blog hr {
+    border: none;
+    border-bottom: 6px dotted #20c997;
+    margin: 4px -6px 8px -2px;
+    padding: 0;
+}
+
+.blog .content {
+    color: #888888;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 5px;
+    max-height: 82px;
+    overflow: hidden;
+}
+
+/* VIEW CSS
+------------------------------------------------- */
+
+.view h2 {
+    color: #555555;
+    font-size: 28px;
+    font-weight: bold;
+    max-height: 35px;
+    overflow: hidden;
+}
+
+.view .metadata {
+    color: #7b8a8b;
+    font-size: 14px;
+    font-weight: bold;
+    max-height: 25px;
+    overflow: hidden;
+}
+
+.view .metadata i.fa-calendar-alt {
+    color: #3498db;
+}
+
+.view .metadata i.fa-cog {
+    color: #f39c12;
+}
+
+.view .metadata i.fa-user-circle {
+    color: #e74c3c;
+}
+
+.view hr {
+    border: none;
+    border-bottom: 6px dotted #20c997;
+    margin: 4px -6px 8px -2px;
+    padding: 0;
+}
+
+/* FOOTER CSS
+-------------------------------------------------- */
+
+#footer {
+    background: #ecf0f1;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+#footer p {
+    color: #7b8a8b;
+    font-size: 13px;
+    margin-bottom: .25em;
+}
+
+/* RESET CSS
+-------------------------------------------------- */
+
+.modal-title {
+    color: #212529;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.modal-header {
+    border-bottom: 6px dotted #20c997;
+    color: #555555;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.modal-footer {
+    border-top: 6px dotted #20c997;
+    color: #555555;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group .help-block {
+    color: #597ea2;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    border-width: 2px;
+    color: #2c3e50;
+}
+
+.custom-select {
+    border-width: 2px;
+    color: #2c3e50;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+
+    .view h2 {
+        font-size: 1.5rem;
+        max-height: 28px;
+        overflow: hidden;
+    }
+
+    .col-avatar {
+        display: block;
+        margin-bottom: 0.5rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .comments h5 {
+        text-align: center;
+    }
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .col-avatar {
+        display: block;
+        margin-bottom: 0.5rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .comments h5 {
+        text-align: center;
+    }
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    .col-avatar {
+        float: left;
+        margin-left: 15px;
+        margin-right: 15px;
+        width: 80px;
+    }
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+    .col-avatar {
+        float: left;
+        margin-left: 15px;
+        margin-right: 15px;
+        width: 80px;
+    }
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+    .col-avatar {
+        float: left;
+        margin-left: 15px;
+        margin-right: 15px;
+        width: 80px;
+    }
+
+}
