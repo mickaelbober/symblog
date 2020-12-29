@@ -102,6 +102,10 @@
 /* RESET CSS
 -------------------------------------------------- */
 
+small, .small {
+    font-size: 100%;
+}
+
 .modal-title {
     color: #212529;
     font-size: 24px;
@@ -141,6 +145,15 @@
 .custom-select {
     border-width: 2px;
     color: #2c3e50;
+}
+
+.text-muted {
+    color: #597ea2 !important;
+}
+
+.invalid-feedback {
+    font-size: 85%;
+    color: #e74c3c;
 }
 
 /* RESPONSIVE CSS
