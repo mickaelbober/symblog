@@ -52,6 +52,9 @@ class BlogController extends AbstractController
             ]);
         }
         if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($article);
+            $manager->flush();
             return new Response('OK');
         }
         return $this->render('blog/modal.html.twig', [
