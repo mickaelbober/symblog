@@ -53,52 +53,34 @@
         </li>
     </ul>
 </div>
-<div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="articleModalLabel">Ajouter un article</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="fas fa-times-circle" style="color:#e74c3c"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="title">Titre</label>
-                    <input type="text" class="form-control" id="title" placeholder="Titre de l'article" required autofocus/>
-                    <span id="titreHelp" class="help-block">Veuillez saisir un titre.</span>
-                </div>
-                <div class="form-group">
-                    <label for="category" class="font-weight-bold">Catégorie</label>
-                    <select class="custom-select" id="category" required>
-                        <option value="">Lorem ipsum dolor sit amet.</option>
-                        <option value="1">Lorem ipsum dolor sit amet.</option>
-                        <option value="2">Lorem ipsum dolor sit amet.</option>
-                        <option value="3">Lorem ipsum dolor sit amet.</option>
-                    </select>
-                    <span id="categoryHelp" class="help-block">Veuillez sélectionner une catégorie.</span>
-                </div>
-                <div class="form-group">
-                    <label for="image">Image</label>
-                    <input type="text" class="form-control" id="image" placeholder="URL de l'image" required/>
-                    <span id="imageHelp" class="help-block">Veuillez saisir l'url d'une image.</span>
-                </div>
-                <div class="form-group">
-                    <label for="content">Contenu</label>
-                    <textarea class="form-control" placeholder="Contenu de l'article" id="content" rows="5"></textarea>
-                    <span id="contentHelp" class="help-block">Veuillez saisir un contenu.</span>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary px-3 py-2 mr-2">
-                    <i class="fas fa-save"></i> Enregistrer
-                </button>
-                <button type="button" class="btn btn-secondary px-3 py-2" data-dismiss="modal">
-                    <i class="fa fa-ban"></i> Annuler
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+
+$('#btn-article-new').on('click', function(event) {
+    event.preventDefault();
+    url = location.pathname + '/new';
+    $.get(url, function(data) {
+        $('#modal-article').remove();
+        $('body').append(data);
+        $('#modal-article').modal('show');
+        $('#form-article').on('submit', function(event) {
+            event.preventDefault();
+            $.post(url, $(this).serialize(), function(data) {
+                if(data != 'OK') {
+                    $('#form-article .modal-body').html(data);
+                } else {
+                    $('#modal-article').modal('hide');
+                    location.reload();
+                }
+            });
+        });
+    });
+});
+
+</script>
 
 {% endblock %}
