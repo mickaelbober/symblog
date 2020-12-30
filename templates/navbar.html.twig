@@ -7,20 +7,27 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
         </ul>
-    {% if article is not defined %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and article is not defined %}
         <a class="btn btn-outline-info mx-1 my-sm-0" href="#" id="btn-article-new">
             <i class="fas fa-plus-circle"></i> Ajouter&nbsp;&nbsp;&nbsp;&nbsp;
         </a>
-    {% else %}
+    {% endif %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and article is defined %}
         <a class="btn btn-outline-info mx-1 my-sm-0" href="#" id="btn-article-edit">
             <i class="fas fa-plus-circle"></i> Editer&nbsp;&nbsp;&nbsp;&nbsp;
         </a>
     {% endif %}
-        <a class="btn btn-outline-success mx-1 my-sm-0" href="sign.html">
+    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <a class="btn btn-outline-success mx-1 my-sm-0" href="{{ path('security_login') }}">
             <i class="fas fa-sign-in-alt"></i> Connexion&nbsp;&nbsp;&nbsp;
         </a>
-        <a class="btn btn-outline-danger mx-1 my-sm-0" href="registration.html">
-            <i class="fas fa-user-circle"></i> Inscription
+        <a class="btn btn-outline-danger mx-1 my-sm-0" href="{{ path('security_registration') }}">
+            <i class="fas fa-user-circle"></i> Inscription&nbsp;&nbsp;&nbsp;
         </a>
+    {% else %}
+        <a class="btn btn-outline-danger mx-1 my-sm-0" href="{{ path('security_logout') }}">
+            <i class="fas fa-sign-out-alt"></i> Deconnexion&nbsp;&nbsp;&nbsp;
+        </a>
+    {% endif %}        
     </div>
 </div>

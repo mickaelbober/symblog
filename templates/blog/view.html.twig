@@ -9,7 +9,7 @@
     <div class="metadata">
         <i class="fas fa-calendar-alt"></i> {{ article.createdAt | date('d/m/Y à H:i') }}
         <i class="fas fa-cog"></i> {{ article.category.title }}
-        <i class="fas fa-user-circle"></i> achretien
+        <i class="fas fa-user-circle"></i> {{ article.user.username }}
     </div>
     <hr/>
     <img src="{{ article.image }}" class="img-fluid mb-3" alt="">
