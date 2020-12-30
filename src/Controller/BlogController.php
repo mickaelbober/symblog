@@ -40,9 +40,11 @@ class BlogController extends AbstractController
      */
     public function form(Article $article = null, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if (!$article) {
             $article = new Article();
-            $article->setCreatedAt(new \DateTime());
+            $article->setCreatedAt(new \DateTime())
+                    ->setUser($this->getUser());
         }
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
