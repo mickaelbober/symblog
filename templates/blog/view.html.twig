@@ -18,105 +18,32 @@
     </div>
 </div>
 <div class="container comments my-3">
-    <h4>8 commentaires ...</h4>
+    {% if article.comments | length != 0 %}
+    <h4>{{ article.comments | length }} commentaires ...</h4>
+        {% for comment in article.comments %}
     <div class="bg-light rounded m-3 p-3">
         <div class="row">
             <div class="col-avatar">
                 <img src="http://lorempixel.com/80/80/city/" class="img-fluid rounded mt-1" alt="">
             </div>
             <div class="col-md">
-                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci, atque beatae distinctio
-                exercitationem expedita fugit harum, incidunt ipsum libero odit quis rerum sapiente voluptates?
+                <h5>{{ comment.user.username }} le {{ comment.createdAt | date('d/m/Y à H:i') }}</h5>
+                {{ comment.content }}
             </div>
         </div>
     </div>
-    <div class="bg-light rounded m-3 p-3">
-        <div class="row">
-            <div class="col-avatar">
-                <img src="http://lorempixel.com/80/80/animals/" class="img-fluid rounded mt-1" alt="">
-            </div>
-            <div class="col-md">
-                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam asperiores assumenda consequatur
-                corporis cupiditate deleniti est fugiat incidunt labore natus, neque pariatur repellat sapiente tempora
-                veniam voluptas. Aspernatur deserunt dolore et ipsa iure maxime obcaecati odit officiis sed tempore.
-            </div>
+        {% endfor %}
+    {% endif %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    <h4>Laisser un commentaire :</h4>
+    {{ form_start(form) }}
+        {{ form_row(form.content) }}
+        <div class="form-group text-right">
+            <button type="submit" class="btn btn-primary mx-1">Enregistrer</button>
+            <button type="button" class="btn btn-secondary mx-1">Annuler</button>
         </div>
-    </div>
-    <div class="bg-light rounded m-3 p-3">
-        <div class="row">
-            <div class="col-avatar">
-                <img src="http://lorempixel.com/80/80/sports/" class="img-fluid rounded mt-1" alt="">
-            </div>
-            <div class="col-md">
-                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, molestiae molestias neque
-                repudiandae sunt tempore!
-            </div>
-        </div>
-    </div>
-    <div class="bg-light rounded m-3 p-3">
-        <div class="row">
-            <div class="col-avatar">
-                <img src="http://lorempixel.com/80/80/fashion/" class="img-fluid rounded mt-1" alt="">
-            </div>
-            <div class="col-md">
-                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dicta dolorem ducimus eligendi eos
-                facere ipsum iure laudantium maxime minima nam neque optio possimus, quo quod sed sit soluta sunt
-                tempore ullam veniam voluptas voluptate.
-            </div>
-        </div>
-    </div>
-    <div class="bg-light rounded m-3 p-3">
-        <div class="row">
-            <div class="col-avatar">
-                <img src="http://lorempixel.com/80/80/cats/" class="img-fluid rounded mt-1" alt="">
-            </div>
-            <div class="col-md">
-                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium beatae consequuntur cum deleniti
-                dignissimos dolore ea eaque eius excepturi expedita facilis hic in ipsam itaque minus nam nemo neque
-                nulla numquam obcaecati odio officia, porro sequi vel velit! Esse, maiores!
-            </div>
-        </div>
-    </div>
-    <div class="bg-light rounded m-3 p-3">
-        <div class="row">
-            <div class="col-avatar">
-                <img src="http://lorempixel.com/80/80/transport/" class="img-fluid rounded mt-1" alt="">
-            </div>
-            <div class="col-md">
-                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, libero.
-            </div>
-        </div>
-    </div>
-    <div class="bg-light rounded m-3 p-3">
-        <div class="row">
-            <div class="col-avatar">
-                <img src="http://lorempixel.com/80/80/nature/" class="img-fluid rounded mt-1" alt="">
-            </div>
-            <div class="col-md">
-                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus atque beatae culpa cupiditate
-                delectus doloribus dolorum eaque et ex excepturi hic incidunt inventore itaque, minima numquam odit
-                optio quaerat qui quisquam reprehenderit saepe sequi soluta tenetur ut velit vero voluptatem.
-            </div>
-        </div>
-    </div>
-    <div class="bg-light rounded m-3 p-3">
-        <div class="row">
-            <div class="col-avatar">
-                <img src="http://lorempixel.com/80/80/people/" class="img-fluid rounded mt-1" alt="">
-            </div>
-            <div class="col-md">
-                <h5>Lorem ipsum le 10/05/2018 à 19:30</h5>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae debitis dolorum esse laborum ut!
-            </div>
-        </div>
-    </div>
+        {{ form_end(form) }}
+    {% endif %}
 </div>
 
 {% endblock %}
