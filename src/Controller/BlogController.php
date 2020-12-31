@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Form\ArticleType;
+use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,11 +29,26 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{id}", name="blog_view", requirements={"id"="\d+"})
      */
-    public function view(Article $article): Response
+    public function view(Article $article, Request $request): Response
     {
-        return $this->render('blog/view.html.twig', [
-            'article' => $article
-        ]);
+        $comment = new Comment();
+        $comment->setUser($this->getUser())
+            ->setArticle($article)
+            ->setCreatedAt(new \DateTime());
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($comment);
+            $manager->flush();
+            return $this->redirectToRoute('blog_view', ['id' => $article->getId()]);
+        }
+        else {
+            return $this->render('blog/view.html.twig', [
+                'article' => $article,
+                'form' => $form->createView()
+            ]);
+        }
     }
 
     /**
