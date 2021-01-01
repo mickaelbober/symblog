@@ -24,7 +24,11 @@
     <div class="bg-light rounded m-3 p-3">
         <div class="row">
             <div class="col-avatar">
-                <img src="http://lorempixel.com/80/80/city/" class="img-fluid rounded mt-1" alt="">
+            {% if comment.user.avatar %}
+                <img src="{{ comment.user.avatar.image }}" class="img-fluid rounded mt-1" alt="">
+            {% else %}
+                &nbsp;&nbsp;<i class="fas fa-user fa-5x" style="color: #cccccc"></i>
+            {% endif %}
             </div>
             <div class="col-md">
                 <h5>{{ comment.user.username }} le {{ comment.createdAt | date('d/m/Y à H:i') }}</h5>
