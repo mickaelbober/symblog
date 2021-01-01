@@ -52,6 +52,11 @@ class User implements UserInterface
      */
     private $confirmPassword;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Avatar::class)
+     */
+    private $avatar;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -118,5 +123,17 @@ class User implements UserInterface
     public function getRoles()
     {
         return ['ROLE_USER'];
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?Avatar $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
     }
 }

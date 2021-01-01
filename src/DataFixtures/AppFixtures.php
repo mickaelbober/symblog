@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Article;
+use App\Entity\Avatar;
 use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\User;
@@ -25,13 +26,24 @@ class AppFixtures extends Fixture
     {
         $faker = \Faker\Factory::create('fr_FR');
 
+        $avatars = new ArrayCollection();
+        for ($i = 0; $i < 10; $i++) {
+            $avatar = new Avatar();
+            $avatar->setTitle($faker->sentence(1, false))
+                ->setImage($faker->imageUrl(80, 80))
+                ->setCreatedAt($faker->dateTimeBetween('-6 months'));
+            $avatars->add($avatar);
+            $manager->persist($avatar);
+        }
+
         $users = new ArrayCollection();
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $password = $this->encoder->encodePassword($user, $faker->password);
             $user->setEmail($faker->email)
                 ->setUsername($faker->userName)
-                ->setPassword($password);
+                ->setPassword($password)
+                ->setAvatar($avatars->get(mt_rand(0, 9)));
             $users->add($user);
             $manager->persist($user);
         }
