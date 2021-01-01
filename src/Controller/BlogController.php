@@ -7,6 +7,7 @@ use App\Entity\Comment;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,9 +18,13 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog", name="blog")
      */
-    public function index(ArticleRepository $repository): Response
+    public function index(ArticleRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
-        $articles = $repository->findAll();
+        $articles = $paginator->paginate(
+            $repository->findAll(),
+            $request->query->getInt('page', 1),
+            12
+        );
 
         return $this->render('blog/index.html.twig', [
             'articles' => $articles
