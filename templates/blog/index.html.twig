@@ -68,6 +68,28 @@ $('#btn-article-new').on('click', function(event) {
     });
 });
 
+$('a.js-like').on('click', function(event) {
+    event.preventDefault();
+    url = this.pathname;
+    likes = this.querySelector('span.js-likes');
+    icone = this.querySelector('i');
+    $.get(url, function(data) {
+        likes.textContent = data.likes;
+        if(icone.classList.contains('fas')) {
+            icone.classList.replace('fas', 'far');
+        } else {
+            icone.classList.replace('far', 'fas');
+        }
+    })
+    .fail(function(data) {
+        if(data.status === 403) {
+            alert('Vous n\'êtes pas connecté !');
+        } else {
+            alert('Une erreur s\'est produite !');
+        }
+    }); 
+});
+
 </script>
 
 {% endblock %}
