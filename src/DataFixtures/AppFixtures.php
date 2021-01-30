@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Avatar;
 use App\Entity\Category;
 use App\Entity\Comment;
+use App\Entity\Like;
 use App\Entity\User;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -80,6 +81,15 @@ class AppFixtures extends Fixture
                 ->setArticle($articles->get(mt_rand(0, 59)));
             $comments->add($comment);
             $manager->persist($comment);
+        }
+
+        $likes = new ArrayCollection();
+        for ($i = 0; $i < 180; $i++) {
+            $like = new Like();
+            $like->setArticle($articles->get(mt_rand(0, 59)))
+                ->setUser($users->get(mt_rand(0, 9)));
+            $likes->add($like);
+            $manager->persist($like);
         }
 
         $manager->flush();
