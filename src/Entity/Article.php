@@ -67,9 +67,15 @@ class Article
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Like::class, mappedBy="article", orphanRemoval=true)
+     */
+    private $likes;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,4 +184,46 @@ class Article
 
         return $this;
     }
+
+    /**
+     * @return Collection|Like[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getArticle() === $this) {
+                $like->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isLikedByUser(User $user): bool
+    {
+        foreach($this->likes as $like) {
+            if($like->getUser() === $user) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Entity\Like;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
+use App\Repository\LikeRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -84,5 +86,50 @@ class BlogController extends AbstractController
         return $this->render('blog/modal.html.twig', [
             'form' => $form->createView()
         ]); 
+    }
+
+    /**
+     * @Route("/blog/{id}/like", name="blog_like", requirements={"id"="\d+"})
+     */
+    public function like(Article $article, LikeRepository $repository): Response
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->json([
+                'code' => 403,
+                'message' => 'non autorisé'
+            ],
+            403);
+        }
+        if ($article->isLikedByUser($user)) {
+            $like = $repository->findOneBy([
+                'article' => $article,
+                'user' => $user
+            ]);            
+            $manager->remove($like);
+            $manager->flush();
+            return $this->json([
+                'code' => 200,
+                'message' => 'like bien supprimé',
+                'likes' => $repository->count([
+                    'article' => $article
+                ])
+            ],
+            200);
+        }
+        $like = new Like();
+        $like->setArticle($article);
+        $like->setUser($user);
+        $manager->persist($like);
+        $manager->flush();
+        return $this->json([
+            'code' => 200,
+            'message' => 'like bien ajouté',
+            'likes' => $repository->count([
+                'article' => $article
+            ])
+        ],
+        200);
     }
 }
