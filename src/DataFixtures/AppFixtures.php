@@ -8,7 +8,7 @@ use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\Like;
 use App\Entity\User;
-
+use App\Entity\View;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ObjectManager;
@@ -67,7 +67,8 @@ class AppFixtures extends Fixture
                 ->setImage($faker->imageUrl(1280, 800))
                 ->setCreatedAt($faker->dateTimeBetween('-6 months'))
                 ->setCategory($categories->get(mt_rand(0, 9)))
-                ->setUser($users->get(mt_rand(0, 9)));
+                ->setUser($users->get(mt_rand(0, 9)))
+                ->setView($faker->numberBetween(0, 2000));
             $articles->add($article);
             $manager->persist($article);
         }
@@ -90,6 +91,15 @@ class AppFixtures extends Fixture
                 ->setUser($users->get(mt_rand(0, 9)));
             $likes->add($like);
             $manager->persist($like);
+        }
+
+        $views = new ArrayCollection();
+        for ($i = 0; $i < 180; $i++) {
+            $view = new View();
+            $view->setArticle($articles->get(mt_rand(0, 59)))
+                ->setUser($users->get(mt_rand(0, 9)));
+            $views->add($view);
+            $manager->persist($view);
         }
 
         $manager->flush();
