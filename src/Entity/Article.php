@@ -72,10 +72,21 @@ class Article
      */
     private $likes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=View::class, mappedBy="article", orphanRemoval=true)
+     */
+    private $views;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $view;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->views = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -224,6 +235,48 @@ class Article
         }
 
         return false;
+    }
+
+    /**
+     * @return Collection|View[]
+     */
+    public function getViews(): Collection
+    {
+        return $this->views;
+    }
+
+    public function addView(View $view): self
+    {
+        if (!$this->views->contains($view)) {
+            $this->views[] = $view;
+            $view->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeView(View $view): self
+    {
+        if ($this->views->removeElement($view)) {
+            // set the owning side to null (unless already changed)
+            if ($view->getArticle() === $this) {
+                $view->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getView(): ?int
+    {
+        return $this->view;
+    }
+
+    public function setView(int $view): self
+    {
+        $this->view = $view;
+
+        return $this;
     }
 
 }
