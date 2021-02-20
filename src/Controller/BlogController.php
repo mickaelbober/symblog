@@ -26,7 +26,7 @@ class BlogController extends AbstractController
         $articles = $paginator->paginate(
             $repository->findAll(),
             $request->query->getInt('page', 1),
-            12
+            16
         );
 
         return $this->render('blog/index.html.twig', [

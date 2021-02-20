@@ -6,7 +6,7 @@
 
 <div class="container-fluid blog my-3">
     {% for article in articles %}
-        {% if loop.index0 is divisible by (3) %}
+        {% if loop.index0 is divisible by (4) %}
     <div class="row">
         {% endif %}
         <div class="col-md">
@@ -39,11 +39,11 @@
             <div class="content">
                 {{ article.content | raw }}
             </div>
-            <a href="{{ path('blog_view', { 'id': article.id }) }}" class="btn btn-primary btn-sm mb-3">
+            <a href="{{ path('blog_view', { 'id': article.id }) }}" class="badge badge-pill badge-secondary mb-2">
                 <i class="fas fa-eye"></i> Lire la suite
             </a>
         </div>
-        {% if loop.index is divisible by (3) or loop.last %}
+        {% if loop.index is divisible by (4) or loop.last %}
     </div>
         {% endif %}
     {% endfor %}

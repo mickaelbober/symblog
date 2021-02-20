@@ -3,7 +3,7 @@
 
 .blog h4 {
     color: #555555;
-    font-size: 18px;
+    font-size: 13px;
     font-weight: bold;
     max-height: 25px;
     overflow: hidden;
@@ -11,9 +11,9 @@
 
 .blog .metadata {
     color: #7b8a8b;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: bold;
-    max-height: 25px;
+    max-height: 15px;
     overflow: hidden;
 }
 
@@ -31,16 +31,16 @@
 
 .blog hr {
     border: none;
-    border-bottom: 6px dotted #20c997;
-    margin: 4px -6px 8px -2px;
+    border-bottom: 4px dotted #20c997;
+    margin: 4px -2px 0px -2px;
     padding: 0;
 }
 
 .blog a.like {
     color: #444444;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
-    padding: 5px;
+    padding: 1px 2px;
 }
 
 .blog a.like:hover {
@@ -50,9 +50,9 @@
 
 .blog a.view {
     color: #444444;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
-    padding: 5px;
+    padding: 1px 2px;
 }
 
 .blog a.view:hover {
@@ -62,10 +62,10 @@
 
 .blog .content {
     color: #888888;
-    font-size: 13px;
+    font-size: 11px;
     font-style: italic;
     font-weight: bold;
-    max-height: 82px;
+    max-height: 65px;
     overflow: hidden;
 }
 
