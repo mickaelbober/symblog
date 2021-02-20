@@ -33,21 +33,18 @@ DATABASE_URL=mysql://symblog:Azerty12@127.0.0.1:3306/symblog?serverVersion=8.0
 Create the database:
 
 ```bash
-$ cd symblog/
 $ php bin/console doctrine:database:create
 ```
 
 Apply migrations:
 
 ```bash
-$ cd symblog/
 $ php bin/console doctrine:migrations:migrate
 ```
 
 Add some fixtures:
 
 ```bash
-$ cd symblog/
 $ php bin/console doctrine:fixture:load
 ```
 
@@ -58,7 +55,6 @@ Composer
 dependencies to the `./vendor` directory.
 
 ```bash
-$ cd symblog/
 $ composer install
 ```
 
@@ -75,7 +71,6 @@ Run this command and access the application in your
 browser at the given URL (<https://localhost:8000> by default):
 
 ```bash
-$ cd symblog/
 $ symfony server:start
 ```
 
