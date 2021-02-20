@@ -48,6 +48,18 @@
     text-decoration: none;
 }
 
+.blog a.view {
+    color: #444444;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.blog a.view:hover {
+    background-color: #eeeeee;
+    text-decoration: none;
+}
+
 .blog .content {
     color: #888888;
     font-size: 13px;
@@ -103,6 +115,18 @@
 }
 
 .view a.like:hover {
+    background-color: #eeeeee;
+    text-decoration: none;
+}
+
+.view a.view {
+    color: #444444;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.view a.view:hover {
     background-color: #eeeeee;
     text-decoration: none;
 }

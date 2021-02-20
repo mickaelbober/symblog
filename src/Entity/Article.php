@@ -279,4 +279,14 @@ class Article
         return $this;
     }
 
+    public function isViewedByUser(User $user): bool
+    {
+        foreach($this->views as $view) {
+            if($view->getUser() === $user) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
