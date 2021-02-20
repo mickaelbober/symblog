@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\Like;
+use App\Entity\View;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use App\Repository\ArticleRepository;
@@ -25,7 +26,7 @@ class BlogController extends AbstractController
         $articles = $paginator->paginate(
             $repository->findAll(),
             $request->query->getInt('page', 1),
-            12
+            16
         );
 
         return $this->render('blog/index.html.twig', [
@@ -51,6 +52,18 @@ class BlogController extends AbstractController
             return $this->redirectToRoute('blog_view', ['id' => $article->getId()]);
         }
         else {
+            $view = $article->getView() + 1;
+            $article->setView($view);
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($article);
+            $user = $this->getUser();
+            if ($user) {
+                $view = new View();
+                $view->setArticle($article);
+                $view->setUser($user);
+                $manager->persist($view);
+            }
+            $manager->flush();
             return $this->render('blog/view.html.twig', [
                 'article' => $article,
                 'form' => $form->createView()
