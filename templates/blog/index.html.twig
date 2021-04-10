@@ -36,10 +36,19 @@
                 <span class="js-views">{{ article.view }}</span>
                 <span class="js-label">Vues</span>
             </a>
+            <a href="#" class="view js-view">
+                {% if app.user and article.isCommentedByUser(app.user) %}
+                    <i class="fas fa-comment"></i>
+                {% else %}
+                    <i class="far fa-comment"></i>
+                {% endif %}
+                <span class="js-views">{{ article.comments | length }}</span>
+                <span class="js-label">Commentaires</span>
+            </a>
             <div class="content">
                 {{ article.content | raw }}
             </div>
-            <a href="{{ path('blog_view', { 'id': article.id }) }}" class="badge badge-pill badge-secondary mb-2">
+            <a href="{{ path('blog_view', { 'id': article.id }) }}" class="badge badge-secondary mb-2">
                 <i class="fas fa-eye"></i> Lire la suite
             </a>
         </div>

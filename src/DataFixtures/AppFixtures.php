@@ -68,7 +68,8 @@ class AppFixtures extends Fixture
                 ->setCreatedAt($faker->dateTimeBetween('-6 months'))
                 ->setCategory($categories->get(mt_rand(0, 9)))
                 ->setUser($users->get(mt_rand(0, 9)))
-                ->setView($faker->numberBetween(0, 2000));
+                ->setView($faker->numberBetween(0, 2000))
+                ->setPublished(mt_rand(0, 1));
             $articles->add($article);
             $manager->persist($article);
         }
