@@ -78,13 +78,15 @@ class BlogController extends AbstractController
      * @Route("/blog/{id}/edit", name="blog_edit", requirements={"id"="\d+"})
      */
     public function form(Article $article = null, Request $request): Response
-    {
-        $this->denyAccessUnlessGranted('edit', $article);
+    {        
         if (!$article) {
             $article = new Article();
             $article->setCreatedAt(new \DateTime())
-                    ->setUser($this->getUser());
+                    ->setUser($this->getUser())
+                    ->setView(0)
+                    ->setPublished(1);
         }
+        $this->denyAccessUnlessGranted('edit', $article);
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted() && !$form->isValid()) {
