@@ -82,6 +82,11 @@ class Article
      */
     private $view;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $published;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -288,5 +293,28 @@ class Article
         }
 
         return false;
+    }
+
+    public function isCommentedByUser(User $user): bool
+    {
+        foreach($this->comments as $comment) {
+            if($comment->getUser() === $user) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function getPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(bool $published): self
+    {
+        $this->published = $published;
+
+        return $this;
     }
 }

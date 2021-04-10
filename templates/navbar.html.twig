@@ -12,7 +12,7 @@
             <i class="fas fa-plus-circle"></i> Ajouter&nbsp;&nbsp;&nbsp;&nbsp;
         </a>
     {% endif %}
-    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and article is defined %}
+    {% if article is defined and is_granted('edit', article) %}
         <a class="btn btn-outline-info mx-1 my-sm-0" href="#" id="btn-article-edit">
             <i class="fas fa-plus-circle"></i> Editer&nbsp;&nbsp;&nbsp;&nbsp;
         </a>
