@@ -39,6 +39,7 @@ class BlogController extends AbstractController
      */
     public function view(Article $article, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('view', $article);
         $comment = new Comment();
         $comment->setUser($this->getUser())
             ->setArticle($article)
@@ -77,7 +78,7 @@ class BlogController extends AbstractController
      */
     public function form(Article $article = null, Request $request): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('edit', $article);
         if (!$article) {
             $article = new Article();
             $article->setCreatedAt(new \DateTime())
