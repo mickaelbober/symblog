@@ -47,7 +47,7 @@ class ArticleVoter extends Voter
 
     private function canView(Article $article, User $user)
     {
-        return true;
+        return $article->getPublished();
     }
 
     private function canEdit(Article $article, User $user)

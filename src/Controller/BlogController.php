@@ -23,8 +23,9 @@ class BlogController extends AbstractController
      */
     public function index(ArticleRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
+        $criteria = [ 'published' => 1 ];
         $articles = $paginator->paginate(
-            $repository->findAll(),
+            $repository->findBy($criteria),
             $request->query->getInt('page', 1),
             16
         );
