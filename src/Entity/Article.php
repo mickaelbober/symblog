@@ -289,4 +289,15 @@ class Article
 
         return false;
     }
+
+    public function isCommentedByUser(User $user): bool
+    {
+        foreach($this->comments as $comment) {
+            if($comment->getUser() === $user) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
